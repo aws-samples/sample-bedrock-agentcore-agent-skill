@@ -1,59 +1,62 @@
-# Contributing Guidelines
+# Contributing
 
-Thank you for your interest in contributing to our project. Whether it's a bug report, new feature, correction, or additional
-documentation, we greatly value feedback and contributions from our community.
+Thanks for your interest in improving this community sample. Contributions must preserve the
+clean-room provenance that lets this repository be licensed MIT-0.
 
-Please read through this document before submitting any issues or pull requests to ensure we have all the necessary
-information to effectively respond to your bug report or contribution.
+## Before contributing to aws-samples
 
+This sample is structured for potential contribution to `aws-samples`, but that is **not yet
+cleared**. Before any contribution to an AWS org:
 
-## Reporting Bugs/Feature Requests
+1. Confirm with the **AWS Open Source Program Office (OSPO)**.
+2. Sign the **Contributor License Agreement (CLA)**.
 
-We welcome you to use the GitHub issue tracker to report bugs or suggest features.
+Do not open a PR to an AWS org until both are done.
 
-When filing an issue, please check existing open, or recently closed, issues to make sure somebody else hasn't already
-reported the issue. Please try to include as much information as you can. Details like these are incredibly useful:
+## Clean-room rules (non-negotiable)
 
-* A reproducible test case or series of steps
-* The version of our code being used
-* Any modifications you've made relevant to the bug
-* Anything unusual about your environment or deployment
+1. **Author only from official primary sources** on this allow-list:
+   - `docs.aws.amazon.com`, `aws.amazon.com/blogs`
+   - `strandsagents.com` and the `strands-agents` GitHub org
+   - official AWS GitHub orgs: `aws`, `awslabs`, `aws-samples`, `aws-ia`
+   - `registry.terraform.io` (`hashicorp/aws`, `hashicorp/awscc`)
+   - boto3 docs, `pypi.org`, `npmjs.com`
+   - format specs `agent-plugins.org` and the `agentskills` spec (for package structure only)
+2. **Never** consult, copy, paraphrase, or restructure any pre-existing third-party AgentCore skill
+   or plugin. If someone pastes such content, do not use it as a source.
+3. Use **original phrasing**; only short, attributed quotes from docs — no large verbatim copying.
+4. Every best practice, recommendation, and code snippet needs an **inline citation** to the
+   official URL it was written from.
+5. **Never hard-code volatile facts** (prices, quotas, current model IDs, GA/Preview status) —
+   point to the live source instead.
+6. **Label features GA or Preview**, and never recommend a Preview feature as a production default.
 
+## Provenance is part of the change
 
-## Contributing via Pull Requests
-Contributions via pull requests are much appreciated. Before sending us a pull request, please ensure that:
+When you add or edit an authored file:
+- Add or update its row in [`PROVENANCE.md`](PROVENANCE.md) (file → source URLs, verification date).
+- Live-verify each cited URL; if a URL can't be verified, flag it inline as `[unverified: <url>]`
+  and mirror it in the `PROVENANCE.md` "Flagged / unverified" section.
 
-1. You are working against the latest source on the *main* branch.
-2. You check existing open, and recently merged, pull requests to make sure someone else hasn't addressed the problem already.
-3. You open an issue to discuss any significant work - we would hate for your time to be wasted.
+## Skill format
 
-To send us a pull request, please:
+- Keep `SKILL.md` under ~500 lines; push detail into `references/`.
+- Keep intra-skill links relative and one level deep so the skill stays self-contained.
+- Validate `plugin.json` against the Agent Plugins 1.0.0 schema and `SKILL.md` frontmatter against
+  the Agent Skills specification.
 
-1. Fork the repository.
-2. Modify the source; please focus on the specific change you are contributing. If you also reformat all the code, it will be hard for us to focus on your change.
-3. Ensure local tests pass.
-4. Commit to your fork using clear commit messages.
-5. Send us a pull request, answering any default questions in the pull request interface.
-6. Pay attention to any automated CI failures reported in the pull request, and stay involved in the conversation.
+## Smoke test
 
-GitHub provides additional document on [forking a repository](https://help.github.com/articles/fork-a-repo/) and
-[creating a pull request](https://help.github.com/articles/creating-a-pull-request/).
+Run the package validator before opening a PR:
 
+```bash
+python3 tests/smoke_test.py            # offline: schema, frontmatter, links, provenance, syntax
+python3 tests/smoke_test.py --online   # also HTTP-checks every cited URL returns 200
+```
 
-## Finding contributions to work on
-Looking at the existing issues is a great way to find something to contribute on. As our projects, by default, use the default GitHub issue labels (enhancement/bug/duplicate/help wanted/invalid/question/wontfix), looking at any 'help wanted' issues is a great place to start.
+It exits non-zero on any failure. Optional deps (`jsonschema`, `PyYAML`) improve coverage; the test
+falls back to manual checks if they are absent.
 
+## Reporting issues
 
-## Code of Conduct
-This project has adopted the [Amazon Open Source Code of Conduct](https://aws.github.io/code-of-conduct).
-For more information see the [Code of Conduct FAQ](https://aws.github.io/code-of-conduct-faq) or contact
-opensource-codeofconduct@amazon.com with any additional questions or comments.
-
-
-## Security issue notifications
-If you discover a potential security issue in this project we ask that you notify AWS/Amazon Security via our [vulnerability reporting page](http://aws.amazon.com/security/vulnerability-reporting/). Please do **not** create a public github issue.
-
-
-## Licensing
-
-See the [LICENSE](LICENSE) file for our project's licensing. We will ask you to confirm the licensing of your contribution.
+Open an issue describing the problem and the official source that supports the correction.

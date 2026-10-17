@@ -1,0 +1,25 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "sample-bedrock-agentcore-agent-skill",
+  "version": "0.1.0",
+  "description": "Community sample Agent Skill for building agents on Amazon Bedrock and Amazon Bedrock AgentCore: model choice and the Converse API, Strands and MCP tools, RAG with Knowledge Bases, multi-agent patterns, AgentCore Runtime/Memory/Gateway/Identity, Guardrails, observability, testing, Terraform IaC, security/IAM/cost, and managed alternatives.",
+  "license": "MIT-0",
+  "keywords": [
+    "aws",
+    "bedrock",
+    "agentcore",
+    "strands",
+    "agents",
+    "converse",
+    "knowledge-bases",
+    "mcp",
+    "guardrails",
+    "terraform",
+    "sample"
+  ],
+  "author": {
+    "name": "sample-bedrock-agentcore-agent-skill contributors"
+  },
+  "repository": "https://github.com/ThejashreeNeralakere/sample-bedrock-agentcore-agent-skill",
+  "homepage": "https://github.com/ThejashreeNeralakere/sample-bedrock-agentcore-agent-skill"
+}
