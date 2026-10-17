@@ -1,0 +1,17 @@
+{
+  "_comment": "Illustrative least-privilege identity policy for invoking specific Bedrock models. Replace REGION, ACCOUNT_ID, and MODEL_ID placeholders and scope to the exact model ARNs you use. Source: https://docs.aws.amazon.com/bedrock/latest/userguide/security_iam_id-based-policy-examples.html",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "InvokeScopedBedrockModels",
+      "Effect": "Allow",
+      "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+      ],
+      "Resource": [
+        "arn:aws:bedrock:REGION::foundation-model/MODEL_ID"
+      ]
+    }
+  ]
+}
